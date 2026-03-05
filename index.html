@@ -464,6 +464,7 @@
       backdrop-filter: blur(8px);
       padding: 1rem;
       overflow: hidden;
+      position: relative;
     }
 
     .ticker-track {
@@ -500,11 +501,24 @@
       background: linear-gradient(140deg, color-mix(in srgb, var(--accent), white 58%), color-mix(in srgb, var(--accent-strong), white 72%));
     }
 
+    .achievement-media img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+    }
+
     .achievement-copy {
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 1rem;
       background: color-mix(in srgb, var(--surface), transparent 18%);
+      text-align: center;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .ticker-item h3 {
@@ -519,6 +533,42 @@
       margin: 0.55rem 0 0;
       line-height: 1.6;
       color: var(--text);
+      font-size: 1rem;
+    }
+
+    .achievement-side-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong), transparent 10%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .achievement-side-btn.left {
+      left: 10px;
+    }
+
+    .achievement-side-btn.right {
+      right: 10px;
+    }
+
+    .achievement-copy a {
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .achievement-copy a:hover,
+    .achievement-copy a:focus-visible {
+      text-decoration: underline;
     }
 
     .ticker-meta {
@@ -642,24 +692,29 @@
       border-radius: 18px;
       background: var(--surface-strong);
       overflow: hidden;
-      min-height: 390px;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
     }
 
     .article-image {
       height: 200px;
-      display: grid;
-      place-items: center;
-      color: color-mix(in srgb, var(--accent-strong), #fff 10%);
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-size: 0.84rem;
-      background:
-        linear-gradient(140deg, color-mix(in srgb, var(--accent), white 28%), color-mix(in srgb, var(--accent-strong), white 35%));
+      background: linear-gradient(140deg, color-mix(in srgb, var(--accent), white 28%), color-mix(in srgb, var(--accent-strong), white 35%));
+      overflow: hidden;
+    }
+
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .article-body {
       padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
     }
 
     .article-body h3 {
@@ -671,6 +726,28 @@
       margin: 0.7rem 0 0;
       color: var(--text-soft);
       line-height: 1.65;
+    }
+
+    .article-cn {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .article-en {
+      font-size: 0.92rem;
+    }
+
+    .article-link {
+      display: inline-block;
+      margin-top: auto;
+      color: var(--accent-strong);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .article-link:hover,
+    .article-link:focus-visible {
+      text-decoration: underline;
     }
 
     .dots {
@@ -753,6 +830,14 @@
         grid-template-columns: minmax(250px, 0.95fr) minmax(340px, 1.1fr);
       }
 
+      .achievement-side-btn.left {
+        left: 14px;
+      }
+
+      .achievement-side-btn.right {
+        right: 14px;
+      }
+
       .ticker-item.reverse .achievement-media {
         order: 2;
       }
@@ -775,6 +860,11 @@
 
       .hero {
         padding-top: 0.8rem;
+      }
+
+      .achievement-side-btn {
+        width: 36px;
+        height: 36px;
       }
     }
 
@@ -829,8 +919,9 @@
               An <strong>eager</strong>, <strong>creative</strong>, <strong>interdisciplinary learner</strong> interested in <strong>tech</strong>, <strong>linguistics</strong>, and <strong>social work</strong>!
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="wei-qing-cv.pdf" download>Download CV (PDF)</a>
-              <a class="btn btn-secondary" href="#articles">View Articles</a>
+              <a class="btn btn-primary" href="wei-qing-cv.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+              <a class="btn btn-secondary" href="#achievements">Achievements</a>
+              <a class="btn btn-primary" href="#articles">Articles</a>
             </div>
           </div>
 
@@ -843,54 +934,91 @@
         <h2 class="section-title">Achievements</h2>
 
         <div class="ticker-carousel" aria-label="Achievements carousel" id="achievementCarousel">
+          <button type="button" class="achievement-side-btn left" id="achievementPrev" aria-label="Previous achievement">&#8592;</button>
+          <button type="button" class="achievement-side-btn right" id="achievementNext" aria-label="Next achievement">&#8594;</button>
           <div class="ticker-track" id="achievementTrack">
             <article class="ticker-item">
               <div class="achievement-grid">
-                <div class="achievement-media">Image Placeholder</div>
+                <div class="achievement-media">
+                  <img src="achievements/ASEAN Scholarship Logo.jpg" alt="ASEAN Scholarship logo">
+                </div>
                 <div class="achievement-copy">
-                  <h3>Featured Speaker</h3>
-                  <p>Invited to present on interface storytelling and accessible web craft at a regional design and engineering meetup.</p>
-                  <span class="ticker-meta">2026 Milestone</span>
+                  <h3>ASEAN Scholarship, Ministry of Education Singapore</h3>
+                  <p>Awarded a full tuition grant for Pre-University studies in Singapore based on academic excellence.</p>
+                  <span class="ticker-meta">Scholarship</span>
                 </div>
               </div>
             </article>
             <article class="ticker-item reverse">
               <div class="achievement-grid">
-                <div class="achievement-media">Image Placeholder</div>
+                <div class="achievement-media">
+                  <img src="achievements/People of ASR.jpg" alt="People of ASR feature">
+                </div>
                 <div class="achievement-copy">
-                  <h3>Publication Recognition</h3>
-                  <p>Article selected as an editor's pick for clarity, practical examples, and thoughtful perspective on modern front-end design.</p>
-                  <span class="ticker-meta">Editorial Highlight</span>
+                  <h3>People of ASR (Anderson Serangoon)</h3>
+                  <p>Featured on school magazine and Instagram webpage for outstanding community contribution.</p>
+                  <p><a href="https://www.instagram.com/reel/DO7HnLNEic5/?utm_source=ig_web_copy_link&amp;igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">View my featured video</a></p>
+                  <span class="ticker-meta">Community Spotlight</span>
                 </div>
               </div>
             </article>
             <article class="ticker-item">
               <div class="achievement-grid">
-                <div class="achievement-media">Image Placeholder</div>
+                <div class="achievement-media">
+                  <img src="achievements/asr luminescence.jpg" alt="ASR Luminescence Performing Arts Concert">
+                </div>
                 <div class="achievement-copy">
-                  <h3>Community Contribution</h3>
-                  <p>Mentored junior developers through portfolio reviews and open-source guidance, helping launch several first tech careers.</p>
-                  <span class="ticker-meta">Impact & Mentorship</span>
+                  <h3>ASR Luminescence Performing Arts Concert - Overall In-Charge</h3>
+                  <p>Spearheaded the college's inaugural combined performing arts concert. Served as both emcee and Contemporary Dance performer.</p>
+                  <span class="ticker-meta">Leadership & Performance</span>
                 </div>
               </div>
             </article>
             <article class="ticker-item reverse">
               <div class="achievement-grid">
-                <div class="achievement-media">Image Placeholder</div>
+                <div class="achievement-media">
+                  <img src="achievements/national chinese recital comp.jpg" alt="8th National Chinese Text Recital Competition award">
+                </div>
                 <div class="achievement-copy">
-                  <h3>Design Award Shortlist</h3>
-                  <p>Shortlisted for a digital storytelling award for balancing visual elegance, performance, and accessibility in a portfolio project.</p>
-                  <span class="ticker-meta">Creative Recognition</span>
+                  <h3>Silver Award - 8th National Chinese Text Recital Competition</h3>
+                  <p>First student in team to secure a Silver Award for excellence in oratory and voice acting.</p>
+                  <span class="ticker-meta">Oratory & Voice Acting</span>
                 </div>
               </div>
             </article>
             <article class="ticker-item">
               <div class="achievement-grid">
-                <div class="achievement-media">Image Placeholder</div>
+                <div class="achievement-media">
+                  <img src="achievements/valedictorian.jpg" alt="Valedictorian recognition">
+                </div>
                 <div class="achievement-copy">
-                  <h3>Open-Source Growth</h3>
-                  <p>Contributed reusable UI patterns and documentation updates that improved onboarding for contributors in an active community repository.</p>
-                  <span class="ticker-meta">Open Source</span>
+                  <h3>Valedictorian, Catholic High School, Prefectorial Board</h3>
+                  <p>Selected as the graduating role model for maintaining dual excellence in academics and co-curricular involvements throughout secondary school.</p>
+                  <span class="ticker-meta">Graduation Honor</span>
+                </div>
+              </div>
+            </article>
+            <article class="ticker-item reverse">
+              <div class="achievement-grid">
+                <div class="achievement-media">
+                  <img src="achievements/chinese calligraphy_Page_12.jpg" alt="25th National Chinese Calligraphy Competition merit award">
+                </div>
+                <div class="achievement-copy">
+                  <h3>Merit Award - 25th National Chinese Calligraphy Competition</h3>
+                  <p>Demonstrated technical mastery of Chinese Calligraphy to promote and preserve Chinese cultural roots.</p>
+                  <span class="ticker-meta">Cultural Excellence</span>
+                </div>
+              </div>
+            </article>
+            <article class="ticker-item">
+              <div class="achievement-grid">
+                <div class="achievement-media">
+                  <img src="achievements/discovHer event.jpg" alt="DiscovHER Science Centre Singapore event">
+                </div>
+                <div class="achievement-copy">
+                  <h3>Featured Representative, DiscovHER (Science Centre Singapore)</h3>
+                  <p>Selected to represent women in STEM at a high-profile public event aimed at inspiring the next generation of female leaders in science and technology.</p>
+                  <span class="ticker-meta">Women in STEM</span>
                 </div>
               </div>
             </article>
@@ -903,7 +1031,6 @@
     <section class="articles" id="articles">
       <div class="container">
         <h2 class="section-title">Featured Articles</h2>
-        <p class="section-intro">A carousel preview of recent writing. Swap in your final images and refine each description whenever you are ready.</p>
 
         <div class="carousel" aria-label="Articles carousel">
           <div class="carousel-header">
@@ -918,50 +1045,132 @@
             <div class="track" id="carouselTrack">
               <article class="slide">
                 <div class="article-card">
-                  <div class="article-image">Image Placeholder 01</div>
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/de02d7254f1a67cc9d450cedf79015515e8caa3625be453457ff198147674b75" alt="ASR ArtScience Festival article image"></div>
                   <div class="article-body">
-                    <h3>Article Title One</h3>
-                    <p>Description placeholder: add your final summary here to highlight key ideas and what readers can expect from this piece.</p>
+                    <h3>Zaobao - ASR ArtScience Fest</h3>
+                    <p class="article-cn">通过艺术科学节与相关研讨活动，学校以跨学科实践鼓励学生把创意转化为解决真实问题的能力。</p>
+                    <p class="article-en">Through the ArtScience Festival and related symposiums, the school used interdisciplinary practice to help students turn creativity into real-world problem-solving.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20240508-3604484" target="_blank" rel="noopener noreferrer">Read article</a>
                   </div>
                 </div>
               </article>
 
               <article class="slide">
                 <div class="article-card">
-                  <div class="article-image">Image Placeholder 02</div>
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/c659edb194b396064dda4b00d13d5e4f1c5420a3fb91579647b7e99fc97a20ba" alt="ASR SYF CLDDS Performance article image"></div>
                   <div class="article-body">
-                    <h3>Article Title Two</h3>
-                    <p>Description placeholder: add your final summary here to highlight key ideas and what readers can expect from this piece.</p>
+                    <h3>Zaobao - CLDDS Showcase</h3>
+                    <p class="article-cn">CLDDS以《完美人生》探讨AI与元宇宙下的人生价值，透过舞台叙事引发观众反思真实生命意义。</p>
+                    <p class="article-en">With "Perfect Life," CLDDS explored life values in an AI-metaverse setting and used stage storytelling to spark reflection on the meaning of real life.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20240529-3734453" target="_blank" rel="noopener noreferrer">Read article</a>
                   </div>
                 </div>
               </article>
 
               <article class="slide">
                 <div class="article-card">
-                  <div class="article-image">Image Placeholder 03</div>
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/a174245309d23bb8bff9cb9f992e0a701ea8acfad98996c68e6464c252b9eb18" alt="ASR I Heart Run article image"></div>
                   <div class="article-body">
-                    <h3>Article Title Three</h3>
-                    <p>Description placeholder: add your final summary here to highlight key ideas and what readers can expect from this piece.</p>
+                    <h3>Zaobao - I Heart Run</h3>
+                    <p class="article-cn">I Heart Run把跑步里程转化为爱心米粮，让师生以行动实践“服务社会”的校训精神。</p>
+                    <p class="article-en">I Heart Run converted running mileage into rice donations, allowing students and staff to live out the school's spirit of service through action.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20240619-3932941" target="_blank" rel="noopener noreferrer">Read article</a>
                   </div>
                 </div>
               </article>
 
               <article class="slide">
                 <div class="article-card">
-                  <div class="article-image">Image Placeholder 04</div>
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/4f6ca5d5c2bb93adb81a6f934739200fa3a3201eae6e6ace6536e59c3de290b9" alt="ASR SG59 NDP article image"></div>
                   <div class="article-body">
-                    <h3>Article Title Four</h3>
-                    <p>Description placeholder: add your final summary here to highlight key ideas and what readers can expect from this piece.</p>
+                    <h3>Zaobao - NDP</h3>
+                    <p class="article-cn">SG59庆典结合国家仪式与志愿服务，让师生在庆祝国庆中实践关怀社会与连结社区。</p>
+                    <p class="article-en">The SG59 celebration combined national ceremony with volunteer service, helping students and staff celebrate while caring for the community.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20240827-4533987" target="_blank" rel="noopener noreferrer">Read article</a>
                   </div>
                 </div>
               </article>
 
               <article class="slide">
                 <div class="article-card">
-                  <div class="article-image">Image Placeholder 05</div>
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/54a562ae86cc7f451ec519efee15124fe6840efff422efbc942928f751122045" alt="ASR USS bonding article image"></div>
                   <div class="article-body">
-                    <h3>Article Title Five</h3>
-                    <p>Description placeholder: add your final summary here to highlight key ideas and what readers can expect from this piece.</p>
+                    <h3>Zaobao - USS Bonding</h3>
+                    <p class="article-cn">USS团建一日游不仅奖励努力，也让学生领袖在真实情境中锻炼组织与协作能力。</p>
+                    <p class="article-en">The USS bonding trip rewarded hard work and gave student leaders a real setting to sharpen organization and teamwork skills.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250122-5763368" target="_blank" rel="noopener noreferrer">Read article</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="article-card">
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/409f13cd476e332aea399f6ae1079a5dabf60c8f71f84dbb70fe7b371b129b67" alt="今年没有春天 《取火》 特刊 article image"></div>
+                  <div class="article-body">
+                    <h3>Zaobao - Special Article</h3>
+                    <p class="article-cn">《今年没有春天》以青春视角书写成长的不安与盼望，在平凡时刻中点亮前行的火种。</p>
+                    <p class="article-en">"No Spring This Year" writes about youthful uncertainty and hope, lighting a spark for moving forward in ordinary moments.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250207-5827843" target="_blank" rel="noopener noreferrer">Read article</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="article-card">
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/585f16112bf2a876e688afdc69fde3ac956ae4e071e40ab209d1b04e6dd95864" alt="ASR Orientation Day article image"></div>
+                  <div class="article-body">
+                    <h3>Zaobao - Orientation Day</h3>
+                    <p class="article-cn">“启动航程”迎新活动由学长姐引领新生融入校园，带着归属感展开新的学习旅程。</p>
+                    <p class="article-en">The "Voyage Begins" orientation, led by seniors, helped newcomers integrate into school and start their learning journey with belonging.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250312-5992919" target="_blank" rel="noopener noreferrer">Read article</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="article-card">
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/2c16d0bd38d591b4cadf5d15676c78ad2bb2d35f62738c1dc7542ae78fad9c0d" alt="ASR MTL Fortnight article image"></div>
+                  <div class="article-body">
+                    <h3>Zaobao - MTL Week</h3>
+                    <p class="article-cn">母语双周以“让语文活起来”为核心，通过沉浸式活动激发学生对语言与文化的主动参与。</p>
+                    <p class="article-en">Centered on "bringing language to life," MTL Fortnight used immersive activities to deepen students' active engagement with language and culture.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250409-6133076" target="_blank" rel="noopener noreferrer">Read article</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="article-card">
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/66b6a62edba418e57258f1cd2e4e777d29c0b22d51f51759f5089d75faf9ba37" alt="ASR Luminescence article image"></div>
+                  <div class="article-body">
+                    <h3>Zaobao - ASR Luminescence</h3>
+                    <p class="article-cn">ASR Luminescence由学生主导策划执行，汇聚多元表演艺术并展现强大的团队协作与创作能量。</p>
+                    <p class="article-en">ASR Luminescence was student-led from planning to execution, uniting diverse performing arts with strong teamwork and creative energy.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250611-6552256" target="_blank" rel="noopener noreferrer">Read article</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="article-card">
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/8563e514a1b43483af8c05cebf7facb7d47461b14b79497d26f6e0199fd19cd5" alt="ASR CLDDS Production article image"></div>
+                  <div class="article-body">
+                    <h3>Zaobao - CLDDS SYF Performance</h3>
+                    <p class="article-cn">《时间，没那么便宜》以家庭故事切入，提醒观众珍惜时间与亲情在日常中的可贵。</p>
+                    <p class="article-en">"Time Isn't Cheap" uses a family story to remind audiences of the value of time and kinship in everyday life.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250618-6809951" target="_blank" rel="noopener noreferrer">Read article</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="slide">
+                <div class="article-card">
+                  <div class="article-image"><img src="https://cassette.sphdigital.com.sg/image/zaobao/4475de12309a100e24ba0db30c9774bb02948a60512ab3cdedb8664376205125" alt="ASR Career and Uni Symposium article image"></div>
+                  <div class="article-body">
+                    <h3>Zaobao - Career and Uni Symposium</h3>
+                    <p class="article-cn">职业与升学研讨会整合大学、行业与奖学金资讯，协助学生更清晰地规划未来方向。</p>
+                    <p class="article-en">The Career and University Symposium integrated university, industry, and scholarship insights to help students plan their futures more clearly.</p>
+                    <a class="article-link" href="https://www.zaobao.com.sg/lifestyle/gen/story20250625-6811616" target="_blank" rel="noopener noreferrer">Read article</a>
                   </div>
                 </div>
               </article>
@@ -980,11 +1189,11 @@
         <div class="contact-card">
           <div class="contact-row">
             <strong>Email</strong>
-            <a href="mailto:weiqing@example.com">weiqing@example.com</a>
+            <a href="mailto:delancytan1026@gmail.com">delancytan1026@gmail.com</a>
           </div>
           <div class="contact-row">
             <strong>LinkedIn</strong>
-            <a href="https://www.linkedin.com/in/weiqing" target="_blank" rel="noopener noreferrer">linkedin.com/in/weiqing</a>
+            <a href="https://www.linkedin.com/in/wei-qing-tan/" target="_blank" rel="noopener noreferrer">linkedin.com/in/wei-qing-tan</a>
           </div>
         </div>
       </div>
@@ -1191,6 +1400,8 @@
       const slides = Array.from(track.children);
       const dotsWrap = document.getElementById("achievementDots");
       const wrap = document.getElementById("achievementCarousel");
+      const prevBtn = document.getElementById("achievementPrev");
+      const nextBtn = document.getElementById("achievementNext");
       let index = 0;
       let timer;
 
@@ -1220,6 +1431,11 @@
         update();
       }
 
+      function prev() {
+        index = (index - 1 + slides.length) % slides.length;
+        update();
+      }
+
       function restart() {
         clearInterval(timer);
         timer = setInterval(next, 5000);
@@ -1227,6 +1443,14 @@
 
       wrap.addEventListener("mouseenter", function () { clearInterval(timer); });
       wrap.addEventListener("mouseleave", restart);
+      prevBtn.addEventListener("click", function () {
+        prev();
+        restart();
+      });
+      nextBtn.addEventListener("click", function () {
+        next();
+        restart();
+      });
 
       update();
       restart();
