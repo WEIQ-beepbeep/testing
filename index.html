@@ -278,16 +278,42 @@
     .bg-grid {
       position: absolute;
       inset: 0;
-      opacity: 0.2;
-      background:
-        linear-gradient(145deg, color-mix(in srgb, var(--accent), white 60%), color-mix(in srgb, var(--accent-strong), white 42%)) 0 0 / 96px 96px,
-        linear-gradient(325deg, color-mix(in srgb, var(--accent-strong), white 58%), color-mix(in srgb, var(--accent), white 44%)) 48px 48px / 96px 96px,
-        linear-gradient(45deg, color-mix(in srgb, var(--accent-strong), transparent 76%) 1px, transparent 1px) 0 0 / 48px 48px,
-        linear-gradient(-45deg, color-mix(in srgb, var(--accent), transparent 76%) 1px, transparent 1px) 0 0 / 48px 48px;
-      transform: rotate(45deg) scale(1.35);
+      opacity: 0.3;
+      mix-blend-mode: multiply;
+    }
+
+    :root[data-theme="dark"] .bg-grid {
+      opacity: 0.42;
+      mix-blend-mode: screen;
+    }
+
+    .bg-grid::before,
+    .bg-grid::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      transform: rotate(45deg);
       transform-origin: center;
-      mix-blend-mode: soft-light;
-      filter: blur(0.5px);
+    }
+
+    .bg-grid::before {
+      background:
+        repeating-conic-gradient(
+          from 45deg,
+          color-mix(in srgb, var(--accent), white 58%) 0 25%,
+          color-mix(in srgb, var(--accent-strong), white 52%) 25% 50%
+        );
+      background-size: 72px 72px;
+      filter: saturate(122%) brightness(1.02);
+    }
+
+    :root[data-theme="dark"] .bg-grid::before {
+      filter: saturate(128%) brightness(1.28);
+    }
+
+    .bg-grid::after {
+      background: none;
+      opacity: 0;
     }
 
     .petal-rain {
