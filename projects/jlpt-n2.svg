@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f8e8f0"/>
+  <text x="200" y="140" font-family="Arial, sans-serif" font-size="18" fill="#d46a9a" text-anchor="middle">JLPT N2</text>
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="12" fill="#6b4a59" text-anchor="middle">Japanese Language Test</text>
+  <text x="200" y="195" font-family="Arial, sans-serif" font-size="11" fill="#6b4a59" text-anchor="middle">July 2026</text>
+  <circle cx="120" cy="80" r="40" fill="#d46a9a" opacity="0.3"/>
+  <circle cx="320" cy="250" r="60" fill="#b84e7f" opacity="0.2"/>
+</svg>

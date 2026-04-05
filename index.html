@@ -758,6 +758,124 @@
       animation-delay: 0.9s;
     }
 
+    .current-projects {
+      padding: 1rem 0 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .projects-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--bg-soft);
+      border-radius: 18px;
+      background: var(--surface-strong);
+      overflow: hidden;
+      position: relative;
+      min-height: 320px;
+      perspective: 1000px;
+    }
+
+    .project-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+    }
+
+    .project-card:hover .project-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .project-card-front,
+    .project-card-back {
+      position: absolute;
+      width: 100%;
+      min-height: 320px;
+      backface-visibility: hidden;
+      border-radius: 17px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .project-card-front {
+      background: var(--surface-strong);
+    }
+
+    .project-card-back {
+      background: linear-gradient(165deg, var(--surface-strong) 0%, color-mix(in srgb, var(--surface), var(--accent) 12%) 100%);
+      transform: rotateY(180deg);
+      padding: 1.4rem;
+      justify-content: center;
+    }
+
+    .project-image {
+      height: 180px;
+      background: linear-gradient(140deg, color-mix(in srgb, var(--accent), white 28%), color-mix(in srgb, var(--accent-strong), white 35%));
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-content {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-content h3 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .project-content p {
+      margin: 0.6rem 0 0;
+      color: var(--text-soft);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .project-card-back h3 {
+      font-size: 1.1rem;
+      color: var(--accent-strong);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card-back p {
+      color: var(--text);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .project-tag {
+      display: inline-block;
+      margin-top: 0.9rem;
+      padding: 0.3rem 0.75rem;
+      background: color-mix(in srgb, var(--accent), transparent 88%);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-strong);
+      align-self: flex-start;
+    }
+
     .carousel {
       border: 1px solid var(--line);
       border-radius: 24px;
@@ -1053,7 +1171,8 @@
             <div class="hero-actions">
               <a class="btn btn-primary" href="wei-qing-cv.pdf" target="_blank" rel="noopener noreferrer">CV</a>
               <a class="btn btn-secondary" href="#achievements">Achievements</a>
-              <a class="btn btn-primary" href="#articles">Articles</a>
+              <a class="btn btn-primary" href="#projects">Current Projects</a>
+              <a class="btn btn-secondary" href="#articles">Articles</a>
             </div>
           </div>
 
@@ -1168,6 +1287,123 @@
             </article>
           </div>
           <div class="dots" id="achievementDots" aria-label="Achievement carousel position"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="current-projects" id="projects">
+      <div class="container">
+        <h2 class="section-title">Current Projects</h2>
+        <p class="section-intro">Ongoing commitments I'm actively working on.</p>
+
+        <div class="projects-gallery">
+          <article class="project-card">
+            <div class="project-card-inner">
+              <div class="project-card-front">
+                <div class="project-image">
+                  <img src="projects/logo-jlpt.png" alt="JLPT N2" style="object-fit: contain; background: #ffffff;">
+                </div>
+                <div class="project-content">
+                  <h3>JLPT N2</h3>
+                  <span class="project-tag">Language · July 2026</span>
+                </div>
+              </div>
+              <div class="project-card-back">
+                <h3>JLPT N2</h3>
+                <p>Preparing for the Japanese-Language Proficiency Test N2 level scheduled for July. Aiming to deepen comprehension of Japanese across a broad range of daily scenarios.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-inner">
+              <div class="project-card-front">
+                <div class="project-image">
+                  <img src="projects/mafc.png" alt="MAFC Case Study Challenge" style="object-fit: contain;">
+                </div>
+                <div class="project-content">
+                  <h3>MAFC Case Study Challenge</h3>
+                  <span class="project-tag">Competition · Ongoing</span>
+                </div>
+              </div>
+              <div class="project-card-back">
+                <h3>MAFC Case Study Challenge</h3>
+                <p>Tackle real-world business cases and present innovative solutions to complex management accounting challenges.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-inner">
+              <div class="project-card-front">
+                <div class="project-image">
+                  <img src="projects/PyLadies_Logo_FullColor_BlackText.svg" alt="PyLadies Singapore" style="object-fit: contain; background: #ffffff; padding: 1rem;">
+                </div>
+                <div class="project-content">
+                  <h3>PyLadies Singapore</h3>
+                  <span class="project-tag">Community · June 2026</span>
+                </div>
+              </div>
+              <div class="project-card-back">
+                <h3>PyLadies Singapore</h3>
+                <p>Facilitating Introduction to Python workshops at PyCon Singapore in June. Dedicated to supporting women in tech through accessible coding education.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-inner">
+              <div class="project-card-front">
+                <div class="project-image">
+                  <img src="projects/artscifest.png" alt="ASR ArtScience Festival" style="object-fit: contain;">
+                </div>
+                <div class="project-content">
+                  <h3>ASR ArtScience Festival</h3>
+                  <span class="project-tag">Education · Completed</span>
+                </div>
+              </div>
+              <div class="project-card-back">
+                <h3>ASR ArtScience Festival</h3>
+                <p>Facilitating the workshop "CarpeIntellegia Artificialis" — empowering ASRJC and secondary students to leverage AI tools for academic success.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-inner">
+              <div class="project-card-front">
+                <div class="project-image">
+                  <img src="https://i0.wp.com/opportunitiesforyouth.org/wp-content/uploads/2026/03/1774377421824.jpg?resize=800%2C640&ssl=1" alt="SDG Youth Public Policy Innovation" style="object-fit: cover;">
+                </div>
+                <div class="project-content">
+                  <h3>SDG Youth Policy 2026</h3>
+                  <span class="project-tag">Policy · 2026</span>
+                </div>
+              </div>
+              <div class="project-card-back">
+                <h3>SDG Youth Policy 2026</h3>
+                <p>Drafting proposals to safeguard cultural diversity, with a focus on sustaining Chinese dialects among Malaysian youth for future generations.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-inner">
+              <div class="project-card-front">
+                <div class="project-image">
+                  <img src="projects/code-without-barriers.svg" alt="Code; Without Barriers Hackathon" style="object-fit: cover;">
+                </div>
+                <div class="project-content">
+                  <h3>Code; Without Barriers 2026</h3>
+                  <span class="project-tag">Hackathon · 2026</span>
+                </div>
+              </div>
+              <div class="project-card-back">
+                <h3>Code; Without Barriers 2026</h3>
+                <p>Building an agentic personal assistant to track health, wellness, financial spending, and habit formation — designed with visual appeal and intelligent automation.</p>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
